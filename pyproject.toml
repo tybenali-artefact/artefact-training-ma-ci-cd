@@ -1,0 +1,106 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "boilerplate-datascience-artefact"  # TODO: replace the repo name by yours in all variables
+authors = [
+  { name = "Luca Serra", email = "luca.serra@artefact.com" },
+  { name = "Guillaume Quinquet", email = "guillaume.quinquet@artefact.com" },
+  { name = "Karim Si Larbi", email = "karim.si-larbi@artefact.com" },
+  { name = "Vincent Auriau", email = "vincent.auriau@artefact.com" },
+  { name = "Alexis Vialaret", email = "alexis.vialaret@artefact.com" },
+] # TODO: replace with your project authors
+description = "Boilerplate for Artefact's Data Science team."
+version = "0.0.1"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "notebook>=7.3.3",
+    "numpy==2.2.2",
+    "pandas==2.2.3",
+]
+
+[dependency-groups]
+dev = [
+    "bandit==1.8.3",
+    "codespell==2.4.0",
+    "ipykernel==6.24.0",
+    "mkdocs==1.6.1",
+    "mkdocs-material==9.6.11",
+    "mkdocstrings-python==1.16.8",
+    "nbstripout==0.6.1",
+    "notebook>=7.3.3",
+    "pre-commit==4.2.0",
+    "pytest==8.3.5",
+    "ruff==0.11.2",
+]
+
+
+[project.urls]
+"Homepage" = "https://github.com/artefactory/boilerplate-datascience-artefact"
+"Documentation" = "https://artefactory.github.io/boilerplate-datascience-artefact/"
+
+[tool.setuptools]
+packages = [
+  "lib",
+  "config",
+  "tests",
+] # TODO: replace with your own project values when needed
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+exclude = [
+  ".bzr",
+  ".direnv",
+  ".eggs",
+  ".git",
+  ".ruff_cache",
+  ".svn",
+  ".tox",
+  ".venv",
+  "__pypackages__",
+  "_build",
+  "buck-out",
+  "build",
+  "dist",
+  "node_modules",
+  "venv",
+]
+
+[tool.ruff.lint]
+select = [ # TODO: Your project should enable as many of these checks as possible
+  "E", # Checks for pycodestyles errors
+  "W", # Checks for pycodestyles warnings
+  "F", # Checks for pyflakes errors
+  "I", # Checks imports (isort)
+  "N", # Pep-8 Naming conventions
+  "D", # Docstrings
+  "ARG", # Unused arguments
+  "RET", # Flake8 return simplification rules
+  "RUF", # Ruff specific code quality rules
+  # "S",   # bandit security rules
+  # "ANN", # Flake8 annotation rules
+  # "PTH", # Flake8 recommendation to use pathlib
+  # "PD", # Pandas-vet pandas best practices linting
+  # "SIM", Common code simplifications
+] # See: https://beta.ruff.rs/docs/rules/
+ignore = ["D100", "D101", "D107", "D203", "D213"]
+fixable=["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"*__init__.py" = ["D", "F401"]
+"tests/*" = ["D", "S"]
+
+[tool.ruff.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.ruff.isort]
+known-first-party = ["lib", "config", "tests"]
+
+[tool.bandit.assert_used]
+exclude_dirs = ["tests/"]
