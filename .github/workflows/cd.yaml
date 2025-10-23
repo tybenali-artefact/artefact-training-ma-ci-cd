@@ -6,6 +6,10 @@ on:
     types:
       - completed
 
+permissions:
+  id-token: write    # 👈 required for OIDC auth
+  contents: read       
+
 jobs:
   deploy:
     name: Deploy to Azure Container Instance
