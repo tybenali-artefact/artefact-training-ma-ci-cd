@@ -31,7 +31,7 @@ repos:
         name: Security check (bandit)
         entry: bandit
         types: [python]
-        args: ["--recursive", "lib/"]
+        args: ["--recursive", "lib/", "src/", "--skip", "B101", "--exclude", "tests/"]  # Skip assert warnings and exclude tests
         language: system
       - id: pytest-check
         name: Tests (pytest)

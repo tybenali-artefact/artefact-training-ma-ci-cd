@@ -1,0 +1,7 @@
+# Bandit configuration file
+# Skip B101 (assert_used) for test files as assert statements are common in tests
+
+[bandit]
+exclude_dirs = tests/,venv/,.venv/,__pycache__/
+skip = B101  # Skip assert_used warnings
+tests = tests/

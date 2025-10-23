@@ -24,7 +24,10 @@ jobs:
           CI=true make install
           
       - name: Run Pre commit hook (formatting, linting & tests)
-        run: source .venv/bin/activate && pre-commit run --all-files --hook-stage pre-push --show-diff-on-failure
+        run: |
+          source .venv/bin/activate
+          # Run pre-commit hooks with bandit configuration
+          pre-commit run --all-files --hook-stage pre-push --show-diff-on-failure
       
       - name: Install test dependencies
         run: |
