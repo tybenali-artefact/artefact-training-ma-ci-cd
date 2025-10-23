@@ -28,7 +28,7 @@ jobs:
       # 3️⃣ Build Docker
       - name: Build Docker image
         run: |
-          docker build -t streamlit-app:latest ./src
+          docker build -t streamlit-app:latest -f Dockerfile .
 
       # 4️⃣ Tag pour ACR
       - name: Tag Docker image
