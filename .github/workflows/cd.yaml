@@ -39,11 +39,15 @@ jobs:
           docker build -t ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/streamlit-app:latest .
           docker push ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/streamlit-app:latest
 
-      - name: Deploy to Azure Container Instance
+      - name: Deploy to ACI
         uses: azure/aci-deploy@v1
         with:
           resource-group: ${{ secrets.AZURE_RESOURCE_GROUP }}
-          name: streamlit-app
+          location: ${{ secrets.AZURE_LOCATION }}
+          dns-name-label: streamlit-app-${{ github.run_number }}
           image: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io/streamlit-app:latest
-          dns-name-label: streamlit-demo-${{ github.run_number }}
+          registry-login-server: ${{ secrets.AZURE_REGISTRY_NAME }}.azurecr.io
+          registry-username: ${{ secrets.AZURE_REGISTRY_USERNAME }}
+          registry-password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+          name: streamlit-app
           ports: 8501
