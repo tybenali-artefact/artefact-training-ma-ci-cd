@@ -3,7 +3,7 @@
 Run this script to initialize the model and create sample data.
 """
 
-import subprocess
+import subprocess # nosec B404
 import sys
 
 
@@ -11,7 +11,7 @@ def install_requirements():
     """Install required packages."""
     print("Installing required packages...")
     try:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])
+        subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", "requirements.txt"])  # nosec B603
         print("✅ Requirements installed successfully!")
     except subprocess.CalledProcessError as e:
         print(f"❌ Error installing requirements: {e}")

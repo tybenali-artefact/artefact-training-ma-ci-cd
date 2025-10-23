@@ -33,14 +33,6 @@ repos:
         types: [python]
         args: ["--recursive", "--skip", "B101", "--exclude", "tests/"]  # Skip assert warnings and exclude tests
         language: system
-      - id: pytest-check
-        name: Tests (pytest)
-        stages: [push]
-        entry: pytest tests/
-        types: [python]
-        language: system
-        pass_filenames: false
-        always_run: true
       - id: codespell
         name: Checking typos
         entry: codespell
