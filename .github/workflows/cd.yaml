@@ -54,3 +54,6 @@ jobs:
           image: trainingartefact.azurecr.io/streamlit-app:latest
           name: streamlit-app
           location: francecentral
+          registry-login-server: trainingartefact.azurecr.io
+          registry-username: ${{ secrets.ACR_USERNAME }}
+          registry-password: ${{ secrets.ACR_PASSWORD }}
