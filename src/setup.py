@@ -3,7 +3,7 @@
 Run this script to initialize the model and create sample data.
 """
 
-import subprocess # nosec B404
+import subprocess  # nosec B404
 import sys
 
 

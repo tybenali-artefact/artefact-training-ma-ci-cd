@@ -1,6 +1,6 @@
 """Football prediction model and utilities."""
 
-import pickle # nosec B403
+import pickle  # nosec B403
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -167,7 +167,7 @@ class FootballPredictor:
     def load_model(self, path: str) -> None:
         """Load a trained model."""
         with open(path, "rb") as f:
-            model_data = pickle.load(f) # nosec B301
+            model_data = pickle.load(f)  # nosec B301
 
         self.model = model_data["model"]
         self.scaler = model_data["scaler"]
