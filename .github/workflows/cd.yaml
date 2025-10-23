@@ -1,7 +1,6 @@
 name: CD - Deploy Streamlit App
 
 on:
-  workflow_dispatch: 
   workflow_run:
     workflows: ["CI"]   # 👈 Must match the 'name' field in ci.yml
     types:
