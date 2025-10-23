@@ -2,11 +2,11 @@
 Pytest configuration and fixtures for football prediction tests.
 """
 
-import pytest
-import pandas as pd
-import numpy as np
 import sys
 from pathlib import Path
+
+import pandas as pd
+import pytest
 
 # Add src to path for imports
 sys.path.append(str(Path(__file__).parent.parent / "src"))
@@ -25,9 +25,7 @@ def trained_predictor():
     """Fixture providing a trained predictor."""
     predictor = FootballPredictor()
     data = create_sample_data()
-    data['outcome_numeric'] = data['outcome'].map({
-        'Home Win': 0, 'Draw': 1, 'Away Win': 2
-    })
+    data["outcome_numeric"] = data["outcome"].map({"Home Win": 0, "Draw": 1, "Away Win": 2})
     predictor.train_model(data)
     return predictor
 
@@ -36,20 +34,20 @@ def trained_predictor():
 def sample_match_data():
     """Fixture providing sample match data for prediction."""
     return {
-        'home_team': 'Real Madrid',
-        'away_team': 'Barcelona',
-        'home_goals_avg': 2.1,
-        'away_goals_avg': 1.8,
-        'home_possession': 55,
-        'away_possession': 45,
-        'home_shots_avg': 12,
-        'away_shots_avg': 10,
-        'home_form': 10,
-        'away_form': 8,
-        'weather_rainy': 0,
-        'weather_windy': 0,
-        'temperature': 20,
-        'venue_capacity': 60000
+        "home_team": "Real Madrid",
+        "away_team": "Barcelona",
+        "home_goals_avg": 2.1,
+        "away_goals_avg": 1.8,
+        "home_possession": 55,
+        "away_possession": 45,
+        "home_shots_avg": 12,
+        "away_shots_avg": 10,
+        "home_form": 10,
+        "away_form": 8,
+        "weather_rainy": 0,
+        "weather_windy": 0,
+        "temperature": 20,
+        "venue_capacity": 60000,
     }
 
 
@@ -63,7 +61,7 @@ def sample_batch_data(sample_data):
 def invalid_match_data():
     """Fixture providing invalid match data for error testing."""
     return {
-        'home_goals_avg': 2.1,
+        "home_goals_avg": 2.1,
         # Missing other required keys
     }
 
@@ -72,18 +70,18 @@ def invalid_match_data():
 def extreme_match_data():
     """Fixture providing extreme match data for edge case testing."""
     return {
-        'home_goals_avg': 10.0,  # Very high
-        'away_goals_avg': 0.1,   # Very low
-        'home_possession': 95,   # Very high
-        'away_possession': 5,    # Very low
-        'home_shots_avg': 50,    # Very high
-        'away_shots_avg': 1,     # Very low
-        'home_form': 15,         # Maximum
-        'away_form': 0,          # Minimum
-        'weather_rainy': 1,
-        'weather_windy': 1,
-        'temperature': -10,      # Very cold
-        'venue_capacity': 200000  # Very large
+        "home_goals_avg": 10.0,  # Very high
+        "away_goals_avg": 0.1,  # Very low
+        "home_possession": 95,  # Very high
+        "away_possession": 5,  # Very low
+        "home_shots_avg": 50,  # Very high
+        "away_shots_avg": 1,  # Very low
+        "home_form": 15,  # Maximum
+        "away_form": 0,  # Minimum
+        "weather_rainy": 1,
+        "weather_windy": 1,
+        "temperature": -10,  # Very cold
+        "venue_capacity": 200000,  # Very large
     }
 
 
@@ -96,31 +94,35 @@ def empty_dataframe():
 @pytest.fixture
 def incomplete_dataframe():
     """Fixture providing incomplete DataFrame for error testing."""
-    return pd.DataFrame({
-        'home_team': ['Real Madrid'],
-        'away_team': ['Barcelona'],
-        'home_goals_avg': [2.1],
-        # Missing other required columns
-    })
+    return pd.DataFrame(
+        {
+            "home_team": ["Real Madrid"],
+            "away_team": ["Barcelona"],
+            "home_goals_avg": [2.1],
+            # Missing other required columns
+        }
+    )
 
 
 @pytest.fixture
 def invalid_types_dataframe():
     """Fixture providing DataFrame with invalid data types."""
-    return pd.DataFrame({
-        'home_goals_avg': ['invalid'],  # Should be numeric
-        'away_goals_avg': [1.8],
-        'home_possession': [55],
-        'away_possession': [45],
-        'home_shots_avg': [12],
-        'away_shots_avg': [10],
-        'home_form': [10],
-        'away_form': [8],
-        'weather_rainy': [0],
-        'weather_windy': [0],
-        'temperature': [20],
-        'venue_capacity': [60000]
-    })
+    return pd.DataFrame(
+        {
+            "home_goals_avg": ["invalid"],  # Should be numeric
+            "away_goals_avg": [1.8],
+            "home_possession": [55],
+            "away_possession": [45],
+            "home_shots_avg": [12],
+            "away_shots_avg": [10],
+            "home_form": [10],
+            "away_form": [8],
+            "weather_rainy": [0],
+            "weather_windy": [0],
+            "temperature": [20],
+            "venue_capacity": [60000],
+        }
+    )
 
 
 @pytest.fixture
@@ -151,24 +153,41 @@ def form_values():
 def team_names():
     """Fixture providing team names for testing."""
     return [
-        "Real Madrid", "Barcelona", "Manchester United", "Liverpool",
-        "Bayern Munich", "PSG", "Juventus", "AC Milan", "Chelsea", "Arsenal"
+        "Real Madrid",
+        "Barcelona",
+        "Manchester United",
+        "Liverpool",
+        "Bayern Munich",
+        "PSG",
+        "Juventus",
+        "AC Milan",
+        "Chelsea",
+        "Arsenal",
     ]
 
 
 @pytest.fixture
 def valid_outcomes():
     """Fixture providing valid match outcomes."""
-    return ['Home Win', 'Draw', 'Away Win']
+    return ["Home Win", "Draw", "Away Win"]
 
 
 @pytest.fixture
 def required_columns():
     """Fixture providing required columns for match data."""
     return [
-        'home_goals_avg', 'away_goals_avg', 'home_possession', 'away_possession',
-        'home_shots_avg', 'away_shots_avg', 'home_form', 'away_form',
-        'weather_rainy', 'weather_windy', 'temperature', 'venue_capacity'
+        "home_goals_avg",
+        "away_goals_avg",
+        "home_possession",
+        "away_possession",
+        "home_shots_avg",
+        "away_shots_avg",
+        "home_form",
+        "away_form",
+        "weather_rainy",
+        "weather_windy",
+        "temperature",
+        "venue_capacity",
     ]
 
 
@@ -176,22 +195,29 @@ def required_columns():
 def numeric_columns():
     """Fixture providing numeric columns for testing."""
     return [
-        'home_goals_avg', 'away_goals_avg', 'home_possession', 'away_possession',
-        'home_shots_avg', 'away_shots_avg', 'home_form', 'away_form',
-        'temperature', 'venue_capacity'
+        "home_goals_avg",
+        "away_goals_avg",
+        "home_possession",
+        "away_possession",
+        "home_shots_avg",
+        "away_shots_avg",
+        "home_form",
+        "away_form",
+        "temperature",
+        "venue_capacity",
     ]
 
 
 @pytest.fixture
 def binary_columns():
     """Fixture providing binary columns for testing."""
-    return ['weather_rainy', 'weather_windy']
+    return ["weather_rainy", "weather_windy"]
 
 
 @pytest.fixture
 def string_columns():
     """Fixture providing string columns for testing."""
-    return ['home_team', 'away_team', 'outcome']
+    return ["home_team", "away_team", "outcome"]
 
 
 # Pytest configuration
@@ -200,25 +226,21 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers", "slow: marks tests as slow (deselect with '-m \"not slow\"')"
     )
-    config.addinivalue_line(
-        "markers", "integration: marks tests as integration tests"
-    )
-    config.addinivalue_line(
-        "markers", "unit: marks tests as unit tests"
-    )
+    config.addinivalue_line("markers", "integration: marks tests as integration tests")
+    config.addinivalue_line("markers", "unit: marks tests as unit tests")
 
 
-def pytest_collection_modifyitems(config, items):
+def pytest_collection_modifyitems(config, items):  # noqa: ARG001
     """Modify test collection to add markers."""
     for item in items:
         # Add unit marker to model tests
         if "test_football_model" in item.nodeid:
             item.add_marker(pytest.mark.unit)
-        
+
         # Add integration marker to app tests
         if "test_football_app" in item.nodeid:
             item.add_marker(pytest.mark.integration)
-        
+
         # Add slow marker to tests that might be slow
         if "test_create_and_save_model" in item.nodeid:
             item.add_marker(pytest.mark.slow)

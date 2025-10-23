@@ -1,11 +1,10 @@
-"""
-Setup script for the Football Prediction App.
+"""Setup script for the Football Prediction App.
+
 Run this script to initialize the model and create sample data.
 """
 
 import subprocess
 import sys
-from pathlib import Path
 
 
 def install_requirements():
@@ -23,6 +22,7 @@ def create_model():
     print("Creating football prediction model...")
     try:
         from model import create_and_save_model
+
         create_and_save_model()
         print("✅ Model created successfully!")
     except Exception as e:
@@ -33,13 +33,13 @@ def main():
     """Main setup function."""
     print("🏈 Setting up Football Prediction App...")
     print("=" * 50)
-    
+
     # Install requirements
     install_requirements()
-    
+
     # Create model
     create_model()
-    
+
     print("\n" + "=" * 50)
     print("🎉 Setup completed successfully!")
     print("=" * 50)
