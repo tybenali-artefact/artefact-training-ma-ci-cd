@@ -35,12 +35,10 @@ jobs:
       
       - name: Install test dependencies
         run: |
-          source .venv/bin/activate
           pip install pytest pytest-cov pytest-mock
           pip install pandas numpy scikit-learn plotly streamlit
       
       - name: Run Football Prediction Tests
         run: |
-          source .venv/bin/activate
           cd tests
           python -m pytest test_football_model.py test_football_app.py test_data_creation.py -v
